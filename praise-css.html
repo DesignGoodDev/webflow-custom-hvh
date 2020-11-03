@@ -1,0 +1,40 @@
+<style>
+.praise__item {
+  width: 33.333%;
+  flex: 0 1 33.333%;
+}
+
+.praise__item:nth-child(4n + 4) {
+  width: 100%;
+  flex: 1 0 100%;
+}
+
+.praise__item:nth-child(4n + 4) > .praise__content,
+.praise__item:nth-child(4n + 4) > .praise__name {
+  max-width: 72ch;
+  margin: 0 auto;
+}
+
+.praise__item:nth-last-child(-n+3) {
+  flex: 1 1 auto;
+}
+
+.praise__hr {
+  display: none;
+  position: relative;
+}
+
+.praise__hr:first-of-type {
+  border-color: tan;
+  margin-bottom: 60px;
+}
+
+.praise__hr:last-of-type {
+  border-color: pink;
+  margin-top: 60px;
+}
+
+.praise__item:nth-child(4n + 4) .praise__hr {
+  display: block;
+}
+</style>
