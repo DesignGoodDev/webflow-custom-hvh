@@ -1,13 +1,8 @@
 <script>
   ready(function () {
-    // handleSubNavState();
     handleMobileNavState();
-    // extendCurrentToParents();
-    // applyImageOverlays();
     removeInvisibleElements();
-    // handleSideNavState();
-    addScrollToTopButton();
-    // classifyParents();
+    // addScrollToTopButton();
   });
 
   function ready(callback) {
@@ -22,13 +17,8 @@
     scrollFunction();
   };
 
-  window.onresize = function () {
-    handleSubNavState();
-  }
-
   const header = document.getElementById('nav');
-  const parentLinks = document.querySelectorAll('.sub-nav__parent');
-  const navBreakpoint = window.matchMedia('(min-width: 1140px)');
+  const hamburger = document.getElementById('hamburger');
 
   function scrollFunction() {
     setTimeout(function () {
@@ -40,153 +30,33 @@
     }, 350);
   }
 
-  // function extendCurrentToParents() {
-  //   const currentNavItems = document.querySelectorAll('.sub-nav .w--current');
-
-  //   for (let i = 0; i < currentNavItems.length; i++) {
-  //     let parentItem = currentNavItems[i].closest('.nav-item');
-  //     let parentLink = parentItem.firstElementChild;
-  //     parentLink.classList.add('w--current');
-  //   }
-  // }
-
-  function removeCloseArea(event) {
-    let thisCloseArea = event.target;
-    const allSubNavs = document.querySelectorAll('.sub-nav');
-
-
-    for (let i = 0; i < allSubNavs.length; i++) {
-      let parentItem = allSubNavs[i].closest('.nav-item');
-      let parentLink = parentItem.firstElementChild;
-      parentLink.classList.remove('active');
-      allSubNavs[i].classList.remove('open');
-    }
-
-    thisCloseArea.remove();
-  }
-
-  // function toggleSubNav(event) {
-  //   // const parentLinks = document.querySelectorAll('.sub-nav__parent');
-  //   const closeArea = document.querySelectorAll('.close-area');
-  //   let thisSubNav = event.target.nextElementSibling;
-
-  //   for (let i = 0; i < parentLinks.length; i++) {
-  //     //if a sub nav is open but is not the sub nav closest to the clicked toggle, close the sub nav
-  //     if (parentLinks[i].nextElementSibling.classList.contains('open') && parentLinks[i].nextElementSibling !== thisSubNav) {
-  //       parentLinks[i].nextElementSibling.classList.toggle('open');
-  //       parentLinks[i].classList.toggle('active');
-  //       // go ahead and remove all close areas
-  //       for (let i = 0; i < closeArea.length; i++) {
-  //         closeArea[i].remove();
-  //       }
-  //       // dont return yet, allow the rest of the function to proceed
-  //     }
-  //     //if a sub nav is open and it IS the sub nav closest to the clicked toggle, close the sub nav
-  //     else if (parentLinks[i].nextElementSibling.classList.contains('open') && parentLinks[i].nextElementSibling == thisSubNav) {
-  //       parentLinks[i].nextElementSibling.classList.remove('open');
-  //       parentLinks[i].classList.remove('active');
-  //       // go ahead and remove all close areas
-  //       for (let i = 0; i < closeArea.length; i++) {
-  //         closeArea[i].remove();
-  //       }
-  //       return;
-  //     }
-  //   }
-  //   // if the sub nav is NOT open yet, open it and add a close area
-  //   thisSubNav.classList.add('open');
-  //   event.target.classList.add('active');
-  //   addCloseArea();
-  // }
-
-  function addCloseArea() {
-    const siteWrap = document.querySelectorAll('.site-wrap');
-    let closeArea = document.createElement('div');
-
-    closeArea.classList.add('close-area');
-    siteWrap[0].insertBefore(closeArea, header);
-    closeArea.addEventListener('click', removeCloseArea);
-  }
-
-  // function handleSubNavState() {
-  //   if (navBreakpoint.matches === false) {
-  //     // smaller than navBreakpoint
-  //     for (let i = 0; i < parentLinks.length; i++) {
-  //       parentLinks[i].addEventListener('click', toggleSubNav);
-  //     }
-  //   }
-  //   else if (navBreakpoint.matches === true) {
-  //     // larger than navBreakpoint
-  //     for (let i = 0; i < parentLinks.length; i++) {
-  //       parentLinks[i].removeEventListener('click', toggleSubNav);
-  //     }
-  //   }
-  // }
-
-  // function classifyParents() {
-  //   const allSubNavs = header.querySelectorAll('.nav-item [role="list"]');
-  //   for (const subNav of allSubNavs) {
-  //     subNav.closest('.nav-item').classList.add('parent');
-  //   }
-  // }
-
-
-  // function handleSideNavLink(event) {
-  //   event.preventDefault();
-  //   toggleSideNav();
-  // }
-
-  // function toggleSideNav(event) {
-  //   let sideNav = document.getElementById('side-nav');
-  //   let sideNavDropdown = sideNav.querySelectorAll('.side-nav__list')[0];
-  //   sideNavDropdown.classList.toggle('open');
-  // }
-
-  // function handleSideNavState() {
-  //   let sideNav = document.getElementById('side-nav');
-  //   if (!sideNav) {
-  //     return;
-  //   }
-  //   let sideNavToggle = sideNav.querySelectorAll('.side-nav__heading');
-  //   let sideNavLinks = sideNav.querySelectorAll('li a, .w-dyn-item a');
-  //   for (let i = 0; i < sideNavToggle.length; i++) {
-  //     // console.log(sideNavToggle[i]);
-  //     sideNavToggle[i].addEventListener('click', toggleSideNav);
-  //   }
-  //   for (let i = 0; i < sideNavLinks.length; i++) {
-  //     sideNavLinks[i].addEventListener('click', handleSideNavLink);
-  //   }
-  // }
-
   function toggleMobileMenu(event) {
     document.body.classList.toggle('menu-opened');
+    hamburger.setAttribute('aria-expanded', 'true');
+    toggleCloseArea();
   }
+
+  function insideClickListener(event) {
+    const isClickInside = header.contains(event.target);
+
+    if (!isClickInside) {
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('menu-opened');
+    }
+  }
+
+  function toggleCloseArea() {
+    if (document.body.classList.contains('menu-opened')) {
+      document.addEventListener('click', insideClickListener);
+    } else {
+      document.removeEventListener('click', insideClickListener);
+    }
+  }
+
 
   function handleMobileNavState() {
-    const hamburger = document.getElementById('hamburger');
     hamburger.addEventListener('click', toggleMobileMenu);
   }
-
-  // function wrapElements(element, wrapper) {
-  //   element.parentNode.insertBefore(wrapper, element);
-  //   wrapper.appendChild(element);
-  // }
-
-  // function applyImageOverlays() {
-  //   const imagesToOverlay = document.getElementsByClassName('image--overlay');
-  //   for (let i = 0; i < imagesToOverlay.length; i++) {
-  //     let divWrapper;
-  //     divWrapper = document.createElement('div');
-
-  //     if (imagesToOverlay[i].classList.contains('image--cover') || imagesToOverlay[i].classList.contains('image--cover-half')) {
-  //       divWrapper.classList.add('overlay__wrap--absolute');
-  //       divWrapper.classList.add('overlay__wrap');
-  //       wrapElements(imagesToOverlay[i], divWrapper);
-  //     } else {
-  //       divWrapper.classList.add('overlay__wrap');
-  //       wrapElements(imagesToOverlay[i], divWrapper);
-  //     }
-  //   }
-  // }
 
   function removeInvisibleElements() {
     const allWebflowHiddenEls = document.querySelectorAll('.w-condition-invisible');

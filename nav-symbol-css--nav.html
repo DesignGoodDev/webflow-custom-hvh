@@ -1,0 +1,110 @@
+<style>
+  .menu a {
+    border: 1px solid transparent;
+    transition: color 200ms ease, border 200ms ease;
+  }
+
+  .menu .w--current,
+  .menu a:hover {
+    color: #ddcfca;
+  }
+
+  .menu a:focus {
+    outline: none;
+    border: 1px solid #b66c40;
+  }
+
+  /* Mobile Nav */
+  .mobile-menu__wrap {
+    transition: right 200ms ease;
+  }
+
+  body.menu-opened .mobile-menu__wrap {
+    right: 0;
+  }
+
+  /* Scroll Styles */
+  @-webkit-keyframes move-down {
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes move-down {
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+  #nav {
+    animation: none;
+  }
+
+  #nav.scrolled {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    background-color: #703f46;
+    z-index: 1000;
+    transform: translateY(-100px);
+    animation: move-down 0.2s forwards;
+  }
+
+  #nav.scrolled .logo__image {
+    width: 100px;
+  }
+
+  #nav.scrolled .logo__image--clarifier {
+    visibility: hidden;
+  }
+
+  #nav.scrolled .navbar {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  #nav.scrolled .mobile-menu__wrap {
+    padding-top: 49px;
+  }
+
+  /* Hamburger */
+  .navbar-toggler .bar {
+    transition: transform 200ms ease;
+  }
+
+  body.menu-opened .navbar-toggler .top {
+    transform: rotate(22.5deg) translateX(1px) translateY(-1px);
+    transform-origin: top left;
+  }
+
+  body.menu-opened .navbar-toggler .middle {
+    transform: scale(0);
+  }
+
+  body.menu-opened .navbar-toggler .bottom {
+    transform: rotate(-22.5deg) translateX(1px) translateY(1px);
+    transform-origin: bottom left;
+  }
+
+  @media (max-width: 1140px) {
+    .nav__right .nav-links > .nav-item {
+      padding-right: 16px;
+      padding-left: 40px;
+      border: 0;
+      border-bottom: 1px solid #d6d1ca;
+      margin: 0;
+    }
+
+    .nav__right .nav-links > .nav-item .nav-link {
+      margin-top: 6px;
+      margin-bottom: 6px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .menu-opened #nav.scrolled {
+      height: 100%;
+      overflow-y: scroll;
+    }
+  }
+</style>
