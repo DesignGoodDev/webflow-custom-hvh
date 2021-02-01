@@ -1,0 +1,39 @@
+<!-- <script>
+  ready(function () {
+    toggleAccordions();
+  });
+
+  function ready(callback) {
+    if (document.readyState != 'loading') callback();
+    else if (document.addEventListener) document.addEventListener('DOMContentLoaded', callback);
+    else document.attachEvent('onreadystatechange', function () {
+      if (document.readyState == 'complete') callback();
+    });
+  }
+
+  const toggleGroups = document.querySelectorAll( '.toggle__wrap' );
+
+  function toggleAccordions() {
+    if ( ! toggleGroups ) {
+      return;
+    }
+    for (let i=0; i < toggleGroups.length; i++) {
+      toggleGroups[i].addEventListener( 'click', accordionListener );
+    }
+  }
+
+  function accordionListener( ) {
+    this.classList.toggle( 'open' );
+  }
+</script> -->
+<script>
+// javascript
+$(document).ready(() => {
+  // bind events to accordion
+  $('.toggle').on('click', (ev) => {
+    let target = $(ev.target).siblings('.target');
+    let $target = $(target);
+    $target.toggleClass('hide zoomIn');
+  });
+});
+</script>

@@ -1,0 +1,47 @@
+<style>
+  .hr--moon {
+    position: relative;
+    border-bottom: 1px solid #cc8942;
+  }
+
+  .hr--moon::after {
+    position: absolute;
+    top: -10px;
+    left: calc(50% - 40px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 20px;
+    background-color: #703f46;
+    background-image: url("https://uploads-ssl.webflow.com/5f9080af9bb26beb9a348ea7/5f920872520c0a988f88bbce_icon-moon-hr.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 17px 13px;
+    content: '';
+  }
+
+  .section--dark-brown .hr--moon::after {
+    background-color: #3e2328;
+  }
+
+  .section--brown .hr--moon::after {
+    background-color: #5e3e43;
+  }
+
+  .section--mauve .hr--moon::after {
+    background-color: #703f46;
+  }
+
+  .section--amber .hr--moon::after {
+    background-color: #b66c40;
+  }
+
+  .section--honey .hr--moon::after {
+    background-color: #cd8b43;
+  }
+
+  .section--sand .hr--moon::after {
+    background-color: #ddcfca;
+  }
+</style>

@@ -9,3 +9,5 @@ All Javascript here is "vanilla", in hopeful anticipation of Webflow making jQue
 - Site Navigation Logic
 - IE Warning
 - Make all external links open in new tabs (and add rel="noopener noreferrer")
+- Update year to current year, ex. copyright
+- Simple, class-based toggle logic for accordions

@@ -1,0 +1,58 @@
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+  ready(function () {
+    enableNanoSwiper();
+    enableHennaSwiper();
+    enableLipSwiper();
+  });
+  function ready(callback) {
+    if (document.readyState != 'loading') callback();
+    else if (document.addEventListener) document.addEventListener('DOMContentLoaded', callback);
+    else
+      document.attachEvent('onreadystatechange', function () {
+        if (document.readyState == 'complete') callback();
+      });
+  }
+  let nanoSwiper;
+  let hennaSwiper;
+  let lipSwiper;
+  const enableNanoSwiper = function() {
+    nanoSwiper = new Swiper ('.swiper-container.swiper--nano', {
+      speed: 400,
+      loop: true,
+      navigation: {
+        nextEl: '.swiper-button-next.nano-next',
+        prevEl: '.swiper-button-prev.nano-prev',
+      },
+      a11y: true,
+      keyboardControl: true,
+      grabCursor: true,
+    });
+  };
+  const enableHennaSwiper = function() {
+    hennaSwiper = new Swiper ('.swiper-container.swiper--henna', {
+      speed: 400,
+      loop: true,
+      navigation: {
+        nextEl: '.swiper-button-next.henna-next',
+        prevEl: '.swiper-button-prev.henna-prev',
+      },
+      a11y: true,
+      keyboardControl: true,
+      grabCursor: true,
+    });
+  };
+  const enableLipSwiper = function() {
+    lipSwiper = new Swiper ('.swiper-container.swiper--lip', {
+      speed: 400,
+      loop: true,
+      navigation: {
+        nextEl: '.swiper-button-next.lip-next',
+        prevEl: '.swiper-button-prev.lip-prev',
+      },
+      a11y: true,
+      keyboardControl: true,
+      grabCursor: true,
+    });
+  };
+</script>

@@ -3,6 +3,7 @@
     handleMobileNavState();
     removeInvisibleElements();
     // addScrollToTopButton();
+    toggleAccordions();
   });
 
   function ready(callback) {
@@ -52,7 +53,6 @@
       document.removeEventListener('click', insideClickListener);
     }
   }
-
 
   function handleMobileNavState() {
     hamburger.addEventListener('click', toggleMobileMenu);
@@ -108,6 +108,21 @@
       }, 350);
     }
   }
+
+  const toggles = document.querySelectorAll( '.toggle' );
+
+  function toggleAccordions() {
+    if ( ! toggles ) {
+      return;
+    }
+    for (let i=0; i < toggles.length; i++) {
+      toggles[i].addEventListener( 'click', accordionListener );
+    }
+  }
+
+  function accordionListener( ) {
+    this.parentElement.classList.toggle( 'open' );
+  }
 </script>
 <script>
   const $buoop = {
@@ -131,6 +146,11 @@
   }
 </script>
 <script>
+  ready(function () {
+    openAllExternalsInTabs();
+    addNoReferrer();
+    updateYear();
+  });
   function ready(callback) {
     if (document.readyState != 'loading') callback();
     else if (document.addEventListener) document.addEventListener('DOMContentLoaded', callback);
@@ -154,8 +174,11 @@
       externalLinks[i].rel = 'noreferrer';
     }
   }
-  ready(function () {
-    openAllExternalsInTabs();
-    addNoReferrer();
-  });
+  function updateYear() {
+    const years = document.querySelectorAll('.year');
+    const currentYear = new Date().getFullYear();
+    for (const i in years) {
+      years[i].textContent = currentYear;
+    }
+  }
 </script>

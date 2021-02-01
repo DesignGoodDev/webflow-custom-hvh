@@ -1,0 +1,138 @@
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+<style>
+.swiper-container-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.swiper--before-after .swiper-button-prev,
+.swiper--before-after .swiper-button-next {
+  top: auto;
+  bottom: -26px;
+  left: 0;
+  width: 120px;
+  height: 76px;
+  opacity: 1;
+  transition: opacity 200ms ease;
+}
+
+.swiper--before-after .swiper-button-next {
+  right: 0;
+  left: auto;
+}
+
+.swiper--before-after .swiper-button-prev:hover,
+.swiper--before-after .swiper-button-prev:focus,
+.swiper--before-after .swiper-button-next:hover,
+.swiper--before-after .swiper-button-next:focus {
+  outline: none;
+  opacity: 0.5;
+}
+
+/* circles */
+.swiper--before-after .swiper-button-prev::before,
+.swiper--before-after .swiper-button-next::before {
+  position: absolute;
+  right: 0;
+  left: auto;
+  width: 74px;
+  height: 74px;
+  border: 1px solid #905a48;
+  border-radius: 50%;
+  content: '';
+}
+
+.swiper--before-after .swiper-button-next::before {
+  right: auto;
+  left: 0;
+}
+
+/* arrows */
+.swiper--before-after .swiper-button-prev::after,
+.swiper--before-after .swiper-button-next::after {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  width: 65px;
+  height: 17px;
+  font-size: 1rem;
+  font-family: inherit;
+  background: url("https://uploads-ssl.webflow.com/5f9080af9bb26beb9a348ea7/5f93197cb6e4260892ed29fc_arrow-left.svg") center/contain no-repeat;
+  content: '';
+}
+
+.swiper--before-after .swiper-button-next::after {
+  right: 0;
+  left: auto;
+  background: url("https://uploads-ssl.webflow.com/5f9080af9bb26beb9a348ea7/5f920871cc30587022dbf984_arrow-right.svg") center/contain no-repeat;
+}
+
+.before,
+.after {
+  position: absolute;
+  top: 0;
+  left: 70px;
+  margin: 0;
+  text-align: right;
+  transform: rotate(180deg);
+  writing-mode: vertical-rl;
+}
+
+.after {
+  right: 70px;
+  left: auto;
+}
+
+@media (max-width: 991px) {
+  .swiper--before-after .swiper-button-prev,
+  .swiper--before-after .swiper-button-next {
+    bottom: -16px;
+    width: 72px;
+    height: 46px;
+  }
+
+  .swiper--before-after .swiper-button-prev::before,
+  .swiper--before-after .swiper-button-next::before {
+    width: 44px;
+    height: 44px;
+  }
+
+  .swiper--before-after .swiper-button-prev::after,
+  .swiper--before-after .swiper-button-next::after {
+    bottom: 12px;
+    width: 40px;
+    height: 10px;
+  }
+
+  .before {
+    left: 30px;
+  }
+
+  .after {
+    right: 30px;
+  }
+}
+
+@media (max-width: 767px) {
+  .swiper--before-after .swiper-button-prev,
+  .swiper--before-after .swiper-button-next {
+    bottom: -36px;
+  }
+
+  .before,
+  .after {
+    top: 10px;
+    z-index: 1;
+    color: #fff;
+    text-shadow: 0 0 10px #3e232866;
+  }
+
+  .before {
+    left: 10px;
+  }
+
+  .after {
+    right: 10px;
+  }
+}
+</style>
